@@ -9,7 +9,7 @@
  * model. Localisation changes phrasing only.
  */
 
-import { CONFIG } from "./config.js?v=e1b30d9e1a";
+import { CONFIG } from "./config.js?v=13e73f16ac";
 
 const MOCK_MODES = [
   { id: "bus", lines: [343, 372, 423, 428, 440] },
@@ -60,7 +60,7 @@ export async function resolveAddress(text) {
   });
   const body = await res.json().catch(() => null);
   if (!res.ok || !body || body.ok !== true) return null;
-  return { coord: body.coord, name: body.name };
+  return { coord: body.coord, name: body.name, others: Array.isArray(body.matches) ? body.matches : [] };
 }
 
 /**
