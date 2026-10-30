@@ -18,7 +18,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="WTG Test">
-<link rel="stylesheet" href="style.css?v=067c03d99e">
+<link rel="stylesheet" href="style.css?v=15831e4480">
 </head>
 <body>
 <div class="test-ribbon" aria-hidden="true">TEST</div>
@@ -79,7 +79,7 @@
       <p class="sr-only" id="sizeStatus" role="status"></p>
       <button type="button" class="row" id="orderBtn">Order of places</button>
       <button type="button" class="row" id="installBtn">Add to home screen</button>
-      <button type="button" class="ver" id="verBtn"><span><span id="verLabel">Version</span> <span id="appVersion" data-build="067c03d99e">1.5-test</span></span> · <span id="verMsg">Check for updates</span></button>
+      <button type="button" class="ver" id="verBtn"><span><span id="verLabel">Version</span> <span id="appVersion" data-build="15831e4480">1.5-test</span></span> · <span id="verMsg">Check for updates</span></button>
       </div>
       <button class="go" id="closeManage" type="button">Done</button>
     </div>
@@ -153,6 +153,13 @@
   <section class="sheet" id="place" role="dialog" aria-modal="true" hidden aria-labelledby="placeTitle">
     <div class="panel">
       <h2 class="sheet-title" id="placeTitle" tabindex="-1"></h2>
+      <!-- Offered only once the address is confirmed: a URL is worth sharing when it names a point. -->
+      <button class="sheet-share" id="placeShare" type="button" aria-label="Share" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3v12M12 3l-4 4M12 3l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 11H3.6v9.4h16.8V11H19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
       <button class="sheet-close" id="placeClose" type="button" aria-label="Close">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
@@ -195,6 +202,7 @@
 
 </main>
 
-<script type="module" src="app.js?v=067c03d99e"></script>
+<div class="toast" id="toast" role="status" hidden></div>
+<script type="module" src="app.js?v=15831e4480"></script>
 </body>
 </html>
