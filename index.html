@@ -15,7 +15,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="WTG Test">
-<link rel="stylesheet" href="style.css?v=f5bf8bff56">
+<link rel="stylesheet" href="style.css?v=92cfa2a6fc">
 </head>
 <body>
 <div class="test-ribbon" aria-hidden="true">TEST</div>
@@ -68,7 +68,7 @@
       <div class="seg" id="langRow" role="group" aria-labelledby="langLabel"></div>
       <p class="seg-label" id="themeLabel">Appearance</p>
       <div class="seg" id="themeRow" role="group" aria-labelledby="themeLabel"></div>
-      <button type="button" class="ver" id="verBtn"><span><span id="verLabel">Version</span> <span id="appVersion" data-build="f5bf8bff56">0.1-test</span></span> · <span id="verMsg">Check for updates</span></button>
+      <button type="button" class="ver" id="verBtn"><span><span id="verLabel">Version</span> <span id="appVersion" data-build="92cfa2a6fc">0.1-test</span></span> · <span id="verMsg">Check for updates</span></button>
       <button class="back" id="closeManage" type="button">Done</button>
     </div>
   </section>
@@ -77,12 +77,13 @@
   <section class="sheet" id="place" hidden aria-labelledby="placeTitle">
     <div class="panel">
       <h2 class="sheet-title" id="placeTitle"></h2>
-      <label class="fld" for="placeName"><span id="nameLabel">Name</span><input id="placeName" type="text" autocomplete="off"></label>
+      <label class="sr-only" id="nameLabel" for="placeName">Name</label>
+      <input id="placeName" class="title-input" type="text" autocomplete="off">
 
-      <p class="fld-label" id="iconLabel">Icon</p>
+      <p class="sr-only" id="iconLabel">Icon</p>
       <div class="icons" id="placeIcons" role="group" aria-labelledby="iconLabel"></div>
 
-      <label class="fld" for="placeAddr"><span id="addrLabel">Address</span></label>
+      <label class="sr-only" id="addrLabel" for="placeAddr">Address</label>
       <!-- Autocomplete, not a text field: what gets stored is one of the geocoder's own answers. -->
       <div class="combo">
         <input id="placeAddr" type="text" autocomplete="off" spellcheck="false"
@@ -98,6 +99,6 @@
 
 </main>
 
-<script type="module" src="app.js?v=f5bf8bff56"></script>
+<script type="module" src="app.js?v=92cfa2a6fc"></script>
 </body>
 </html>
