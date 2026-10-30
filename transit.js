@@ -9,7 +9,7 @@
  * model. Localisation changes phrasing only.
  */
 
-import { CONFIG } from "./config.js?v=66400687ce";
+import { CONFIG } from "./config.js?v=4cc8d5fd9f";
 
 const MOCK_MODES = [
   { id: "bus", lines: [343, 372, 423, 428, 440] },
@@ -69,6 +69,27 @@ export async function searchAddresses(text) {
     { name: body.name, coord: body.coord, locality: body.locality || "" },
     ...(Array.isArray(body.matches) ? body.matches : []),
   ].filter((m) => m && m.name && m.coord);
+}
+
+/**
+ * What is at this point — the label under the map pin.
+ *
+ * Null is a valid answer and is not an error: the pin still works, because a confirmed place travels on
+ * its coordinate. Nothing is invented to fill the line.
+ */
+export async function reverseAddress(lat, lng) {
+  if (usingMock() || !Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+  try {
+    const res = await fetch(`${CONFIG.proxyBase}/reverse?coord=${lng},${lat}`, {
+      headers: { accept: "application/json" },
+      signal: AbortSignal.timeout(6000),
+    });
+    const body = await res.json().catch(() => null);
+    if (!res.ok || !body || body.ok !== true || body.provider !== "osm") return null;
+    return { name: String(body.name || ""), locality: String(body.locality || "") };
+  } catch {
+    return null;
+  }
 }
 
 /**
