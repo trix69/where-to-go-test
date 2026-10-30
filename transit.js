@@ -9,7 +9,7 @@
  * model. Localisation changes phrasing only.
  */
 
-import { CONFIG } from "./config.js?v=785a2cae7b";
+import { CONFIG } from "./config.js?v=2460c095b3";
 
 const MOCK_MODES = [
   { id: "bus", lines: [343, 372, 423, 428, 440] },
