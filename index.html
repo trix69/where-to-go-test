@@ -15,11 +15,20 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="WTG Test">
-<link rel="stylesheet" href="style.css?v=b5a4b799d0">
+<link rel="stylesheet" href="style.css?v=b960e78d5d">
 </head>
 <body>
 <div class="test-ribbon" aria-hidden="true">TEST</div>
 <style>.test-ribbon { position: fixed; z-index: 300; top: 0; left: 50%; transform: translateX(-50%); padding: 2px 10px; border-radius: 0 0 8px 8px; background: #c2410c; color: #fff; font: 700 11px/1.4 ui-monospace, monospace; letter-spacing: .1em; pointer-events: none; }</style>
+
+<section class="gate" id="gate" aria-live="polite">
+  <div class="gate-box">
+    <p class="gate-title" id="gateTitle">想去哪儿?</p>
+    <p class="gate-msg" id="gateMsg">正在确认位置…</p>
+    <button class="go" id="gateAllow" type="button" hidden>允许定位</button>
+    <button class="back" id="gateSkip" type="button" hidden>先看看</button>
+  </div>
+</section>
 
 <main class="app" id="app">
 
@@ -58,13 +67,13 @@
       <div class="lang" id="langRow" role="group" aria-label="Language"></div>
       <ul class="places" id="places"></ul>
       <button class="add" id="addBtn" type="button">Add a place</button>
-      <button type="button" class="ver" id="verBtn"><span><span id="verLabel">Version</span> <span id="appVersion" data-build="b5a4b799d0">0.1-test</span></span> · <span id="verMsg">Check for updates</span></button>
+      <button type="button" class="ver" id="verBtn"><span><span id="verLabel">Version</span> <span id="appVersion" data-build="b960e78d5d">0.1-test</span></span> · <span id="verMsg">Check for updates</span></button>
       <button class="back" id="closeManage" type="button">Done</button>
     </div>
   </section>
 
 </main>
 
-<script type="module" src="app.js?v=b5a4b799d0"></script>
+<script type="module" src="app.js?v=b960e78d5d"></script>
 </body>
 </html>
