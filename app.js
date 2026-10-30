@@ -4,7 +4,7 @@
  * No framework, no build step, no network beyond the transit lookup.
  */
 
-import { getTrip, mapsUrl, usingMock, searchAddresses, reverseAddress } from "./transit.js?v=6f52ba7398";
+import { getTrip, mapsUrl, usingMock, searchAddresses, reverseAddress } from "./transit.js?v=c0ab18e977";
 
 const STORE = "whereToGo-test.v1";
 
@@ -107,6 +107,7 @@ const COPY = {
     mapTitle: "Pick on the map",
     mapHint: "Drag the map until the pin is on the door.",
     mapUse: "Use this spot",
+    mapCancel: "Cancel",
     mapLooking: "Looking…",
     mapNoAddress: "No street address here — the pin itself is enough.",
     zoomIn: "Zoom in",
@@ -286,6 +287,7 @@ const COPY = {
     mapTitle: "在地图上选位置",
     mapHint: "拖动地图，把图钉对准门口。",
     mapUse: "就用这里",
+    mapCancel: "取消",
     mapLooking: "正在查找…",
     mapNoAddress: "这里没有门牌，用图钉的位置也可以。",
     zoomIn: "放大",
