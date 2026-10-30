@@ -4,7 +4,7 @@
  * No framework, no build step, no network beyond the transit lookup.
  */
 
-import { getTrip, mapsUrl, usingMock, searchAddresses, reverseAddress } from "./transit.js?v=4cf7097395";
+import { getTrip, mapsUrl, usingMock, searchAddresses, reverseAddress } from "./transit.js?v=8a7c9f2a4e";
 
 const STORE = "whereToGo-test.v1";
 
@@ -1384,7 +1384,9 @@ function refreshDone() {
  * the sheet opens: a preset place that only becomes a real address after a pin or a pick had no share
  * icon until the sheet was closed and opened again (Trix: "I cannot see the share icon"). */
 function refreshShare() {
-  const shareable = !!editing && !editingIsNew && !!(editing.coord && (editing.resolvedName || editing.address));
+  /* A coordinate is the whole promise: the link carries the point and the receiver's app asks what is
+     there. Requiring a label as well hid the icon on a place saved before its address lookup answered. */
+  const shareable = !!editing && !editingIsNew && !!editing.coord;
   el.placeShare.hidden = !shareable;
   el.placeShare.setAttribute("aria-label", t().share);
 }
