@@ -1116,3 +1116,9 @@ html[data-short="1"][data-size="xl"] .bar { margin-bottom: 12px; }
    the screen; the steps list keeps its own scroll either way. */
 #install .panel { max-height: 94dvh; }
 html[data-short="1"][data-size="xl"] .install-mark { display: none; }
+
+/* R78.3: the two fixes above compose into a squeeze — five steps in a 108.7 px window at 579/特大 means a
+   person reads step 1, taps 完成, and installs with Open as Web App still on, which is the sentence 1.7
+   exists for. The note repeats what the heading already says, so on a short viewport at 特大 it goes and the
+   list gets ~222 px: three of five steps visible, 完成 still inside the screen. */
+html[data-short="1"][data-size="xl"] .steps-note { display: none; }
