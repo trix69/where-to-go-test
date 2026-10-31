@@ -603,6 +603,10 @@ html[data-size="xl"] .order-face { display: none; }
   margin: 0 0 10px;
   padding: 0;
   display: grid;
+  /* R74.1: rows were pinned at the item's 56 px min-height, so a step whose text wrapped painted over the
+     number below it — at 特大 把「作为 Web App 打开」关掉。 needs 110 px. `min-content` lets each row be as tall
+     as its own sentence, and the 56 px stays a floor rather than a ceiling. */
+  grid-auto-rows: min-content;
   gap: 12px;
 }
 .steps[hidden] { display: none; }   /* display:grid would otherwise beat the hidden attribute */
@@ -770,7 +774,6 @@ html[data-size="xl"] .order-face { display: none; }
    below the fold, at the end of a four-step list with no scroll indicator (R38.5). */
 /* The icon itself at the top of the sheet: what they are adding, so the home screen afterwards is not
    a surprise. Decorative — the heading says the words. */
-.install-mark { display: block; width: 72px; height: 72px; margin: 4px auto 10px; border-radius: 16px; }
 #install .panel { display: flex; flex-direction: column; }
 /* The steps are the whole point of this sheet, and `flex: 0 1 auto; min-height: 0` let them collapse to
    0 px on a short window — measured: the list 0 px tall with five 56 px rows stacked behind the note, so
@@ -1106,3 +1109,10 @@ html[data-short="1"][data-size="xl"] .bar { margin-bottom: 12px; }
    clipped before the glyph rather than running under it (Trix: "The edit icon is overlapping with the
    hint text" — first the placeholder, then any name long enough to reach the edge). */
 #placeName.has-pencil { padding-right: 40px; }
+
+/* R74.2: at 特大 on a 579 px viewport the sheet's content was 609 px against an 88dvh cap of 510, which put
+   完成 at 544-622 — off-screen, and #install has no close button, so 完成 is the only way out. The
+   decorative icon is the first thing to give up on a short phone, and the panel may use a little more of
+   the screen; the steps list keeps its own scroll either way. */
+#install .panel { max-height: 94dvh; }
+html[data-short="1"][data-size="xl"] .install-mark { display: none; }
