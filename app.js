@@ -4,7 +4,7 @@
  * No framework, no build step, no network beyond the transit lookup.
  */
 
-import { getTrip, mapsUrl, usingMock, searchAddresses, reverseAddress } from "./transit.js?v=54dfa51532";
+import { getTrip, mapsUrl, usingMock, searchAddresses, reverseAddress } from "./transit.js?v=37b6861269";
 
 const STORE = "whereToGo-test.v1";
 
@@ -1149,9 +1149,17 @@ const SIZES = ["sm", "md", "lg", "xl"];
  * that (R71.1). Below 640 px at 特大 the six presets do not fit, and on the launch screen the thing to give
  * up is padding and glyph size, not the last row of places.
  */
-function applyViewportFit() {
+let shortSticky = false;
+function applyViewportFit(force) {
   const h = (window.visualViewport && window.visualViewport.height) || innerHeight;
-  document.documentElement.dataset.short = h < 640 ? "1" : "0";
+  /* Two thresholds, not one (R73.2, R73.3). Entering the tight layout needs the untightened one to be too
+     tall: six presets end at 650 px, so the gate is 652, not a round 640 that left a ten-pixel band with
+     the cut back. Leaving it has to be harder than entering it, because the bars collapse *while the
+     person is scrolling* — the visible height grows under their finger and a single threshold would flip
+     the tiles 174 px mid-reach. Tight stays tight until the viewport is comfortably roomy (700), and a
+     rotation clears the memory so a landscape phone coming back to portrait is measured afresh. */
+  shortSticky = force ? h < 652 : (shortSticky ? h <= 700 : h < 652);
+  document.documentElement.dataset.short = shortSticky ? "1" : "0";
 }
 
 function applySize() {
@@ -2457,7 +2465,7 @@ function setRegionVerdict(v) {
 
 /* R71.1: the launch screen is the screen this is for, and it never paints a card, so its measurement
    cannot live behind the answer card's wiring. Wired here, once, at load. */
-applyViewportFit();
+applyViewportFit(true);
 /* A `resize` event can arrive while the metrics still report the old height — measured: growing the frame
    579 -> 800 updated the gate, shrinking it 800 -> 579 left it stale, and no second event came. So the
    handler measures twice: now, and once more after layout has settled. A ResizeObserver on
@@ -2466,6 +2474,7 @@ const refreshViewportFit = () => {
   applyViewportFit();
   setTimeout(applyViewportFit, 150);
 };
+addEventListener("orientationchange", () => applyViewportFit(true));
 addEventListener("resize", refreshViewportFit);
 if (window.visualViewport) {
   window.visualViewport.addEventListener("resize", refreshViewportFit);   // the bars collapsing is not a resize
