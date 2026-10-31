@@ -14,11 +14,12 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <!-- No service worker, by decision (PROJECT.md §7): this app is useless offline, so it does not pretend otherwise. -->
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<!-- Web app only, by Trix's decision (2026-10-31): an installed standalone copy cannot receive a shared
+     ?add= link — the share sheet hands over a URL, and an installed app is not what a URL opens. So the
+     home-screen entry is a bookmark: no mobile-web-app-capable, no apple-mobile-web-app-capable, and the
+     manifest says display: browser. The icon and its title stay, which is what a bookmark shows. -->
 <meta name="apple-mobile-web-app-title" content="WTG Test">
-<link rel="stylesheet" href="style.css?v=d72f8b1a72">
+<link rel="stylesheet" href="style.css?v=dacc8121eb">
 </head>
 <body>
 <div class="test-ribbon" aria-hidden="true">TEST</div>
@@ -89,7 +90,7 @@
       <p class="sr-only" id="sizeStatus" role="status"></p>
       <button type="button" class="row" id="orderBtn">Order of places</button>
       <button type="button" class="row" id="installBtn">Add to home screen</button>
-      <button type="button" class="ver" id="verBtn"><span><span id="verLabel">Version</span> <span id="appVersion" data-build="d72f8b1a72">1.5-test</span></span> · <span id="verMsg">Check for updates</span></button>
+      <button type="button" class="ver" id="verBtn"><span><span id="verLabel">Version</span> <span id="appVersion" data-build="dacc8121eb">1.6-test</span></span> · <span id="verMsg">Check for updates</span></button>
       </div>
       <button class="go" id="closeManage" type="button">Done</button>
     </div>
@@ -219,6 +220,6 @@
 </main>
 
 <div class="toast" id="toast" role="status" hidden></div>
-<script type="module" src="app.js?v=d72f8b1a72"></script>
+<script type="module" src="app.js?v=dacc8121eb"></script>
 </body>
 </html>
