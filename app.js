@@ -4,7 +4,7 @@
  * No framework, no build step, no network beyond the transit lookup.
  */
 
-import { getTrip, mapsUrl, usingMock, searchAddresses, reverseAddress } from "./transit.js?v=e0a46590dd";
+import { getTrip, mapsUrl, usingMock, searchAddresses, reverseAddress } from "./transit.js?v=5040b4a6ab";
 
 const STORE = "whereToGo-test.v1";
 
@@ -1347,6 +1347,7 @@ const ICONS = [
   "🏥", "🏦", "⛪", "🕌", "🏛️", "🚉",
   "🛍️", "🧺", "🍜", "☕", "🎓", "🏋️",
   "💊", "📮", "🎯", "📍", "🧓", "🐕",
+  "🏊", "⚽",            // swimming, football — appended so no existing place's pool order moves
 ];
 
 let searchTimer = null;
