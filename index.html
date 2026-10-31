@@ -18,18 +18,27 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="WTG Test">
-<link rel="stylesheet" href="style.css?v=b3e7faaf29">
+<link rel="stylesheet" href="style.css?v=642f097ce2">
 </head>
 <body>
 <div class="test-ribbon" aria-hidden="true">TEST</div>
 <style>.test-ribbon { position: fixed; z-index: 300; top: 0; left: 50%; transform: translateX(-50%); padding: 2px 10px; border-radius: 0 0 8px 8px; background: #c2410c; color: #fff; font: 700 11px/1.4 ui-monospace, monospace; letter-spacing: .1em; pointer-events: none; }</style>
 
-<section class="gate" id="gate" aria-live="polite">
+<!-- The location gate. Trix: "If location permission is not obtained, use an overlay to remind customer
+     to follow the steps to grant that permission. That overlay should block any operation to the app
+     until the location service is obtained." There is no way past it: no skip, no outside tap, no Escape. -->
+<section class="gate" id="gate" role="dialog" aria-modal="true" aria-live="polite" aria-labelledby="gateTitle">
   <div class="gate-box">
     <p class="gate-title" id="gateTitle">想去哪儿?</p>
     <p class="gate-msg" id="gateMsg">正在确认位置…</p>
+    <!-- The action comes before the steps: on a small screen the button must be reachable without
+         scrolling, and the steps are the help you read if it does not work. -->
     <button class="go" id="gateAllow" type="button" hidden>允许定位</button>
     <button class="back" id="gateSkip" type="button" hidden>先看看</button>
+    <div class="gate-steps" id="gateSteps" hidden>
+      <p class="gate-steps-title" id="gateStepsTitle"></p>
+      <ol id="gateStepList"></ol>
+    </div>
   </div>
 </section>
 
@@ -79,7 +88,7 @@
       <p class="sr-only" id="sizeStatus" role="status"></p>
       <button type="button" class="row" id="orderBtn">Order of places</button>
       <button type="button" class="row" id="installBtn">Add to home screen</button>
-      <button type="button" class="ver" id="verBtn"><span><span id="verLabel">Version</span> <span id="appVersion" data-build="b3e7faaf29">1.5-test</span></span> · <span id="verMsg">Check for updates</span></button>
+      <button type="button" class="ver" id="verBtn"><span><span id="verLabel">Version</span> <span id="appVersion" data-build="642f097ce2">1.5-test</span></span> · <span id="verMsg">Check for updates</span></button>
       </div>
       <button class="go" id="closeManage" type="button">Done</button>
     </div>
@@ -209,6 +218,6 @@
 </main>
 
 <div class="toast" id="toast" role="status" hidden></div>
-<script type="module" src="app.js?v=b3e7faaf29"></script>
+<script type="module" src="app.js?v=642f097ce2"></script>
 </body>
 </html>
